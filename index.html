@@ -93,6 +93,204 @@
   .legend-item.transfer{--swatch:var(--sage);}
   .legend-item.play{--swatch:var(--parchment-dim);}
 
+  /* ---------- PRACTICE COMPANION ---------- */
+  .companion{
+    display:grid;
+    grid-template-columns:minmax(250px,0.9fr) minmax(280px,1.1fr);
+    gap:18px;
+    align-items:stretch;
+    margin:0 0 42px;
+    padding:18px;
+    background:linear-gradient(145deg, rgba(34,41,55,0.98), rgba(43,51,66,0.92));
+    border:1px solid rgba(199,160,70,0.26);
+    border-radius:6px;
+  }
+  .timer-panel{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    min-height:246px;
+  }
+  .timer-head{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    align-items:flex-start;
+  }
+  .timer-label{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    margin-bottom:8px;
+  }
+  .clock{
+    font-family:var(--mono);
+    color:var(--ivory-dim);
+    font-size:12px;
+    line-height:1.4;
+    text-align:right;
+    white-space:nowrap;
+  }
+  .elapsed{
+    font-family:var(--mono);
+    font-size:clamp(44px,8vw,66px);
+    line-height:1;
+    color:var(--ivory);
+    letter-spacing:0;
+    margin:22px 0 18px;
+  }
+  .timer-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .control-btn{
+    appearance:none;
+    border:1px solid rgba(241,235,220,0.16);
+    background:rgba(27,33,44,0.65);
+    color:var(--ivory);
+    font-family:var(--sans);
+    font-size:13px;
+    font-weight:600;
+    min-height:38px;
+    padding:0 14px;
+    border-radius:4px;
+    cursor:pointer;
+  }
+  .control-btn.primary{
+    border-color:rgba(199,160,70,0.7);
+    background:var(--brass);
+    color:var(--ink-text);
+  }
+  .control-btn:focus-visible,
+  .practice-check input:focus-visible,
+  .notes textarea:focus-visible{
+    outline:2px solid var(--brass);
+    outline-offset:2px;
+  }
+  .control-btn:hover{border-color:rgba(241,235,220,0.38);}
+  .companion-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+  .companion-block{
+    border-top:1px solid rgba(241,235,220,0.12);
+    padding-top:12px;
+  }
+  .companion-title{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--ivory-dim);
+    margin:0 0 9px;
+  }
+  .focus-card{
+    min-height:83px;
+    border-left:3px solid var(--sage);
+    padding-left:11px;
+  }
+  .focus-day{
+    font-family:var(--serif);
+    font-size:18px;
+    color:var(--ivory);
+    margin-bottom:4px;
+  }
+  .focus-detail{
+    font-size:13px;
+    line-height:1.45;
+    color:var(--ivory-dim);
+  }
+  .practice-checks{
+    display:grid;
+    gap:7px;
+  }
+  .practice-check{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:13px;
+    color:var(--ivory);
+    min-height:24px;
+  }
+  .practice-check input{
+    accent-color:var(--brass);
+    width:16px;
+    height:16px;
+    flex:0 0 16px;
+  }
+  .practice-check span{color:var(--ivory-dim);}
+  .practice-check input:checked + span{
+    color:rgba(241,235,220,0.52);
+    text-decoration:line-through;
+  }
+  .lap-list{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:grid;
+    gap:6px;
+    max-height:92px;
+    overflow:auto;
+  }
+  .lap-list li{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:var(--ivory-dim);
+    border-bottom:1px dashed rgba(241,235,220,0.08);
+    padding-bottom:5px;
+  }
+  .empty-state{
+    color:rgba(241,235,220,0.48);
+    font-size:12.5px;
+    line-height:1.45;
+  }
+  .notes{
+    grid-column:1 / -1;
+  }
+  .notes textarea{
+    width:100%;
+    min-height:74px;
+    resize:vertical;
+    border-radius:4px;
+    border:1px solid rgba(241,235,220,0.12);
+    background:rgba(27,33,44,0.68);
+    color:var(--ivory);
+    padding:10px 11px;
+    font:13px/1.5 var(--sans);
+  }
+  .notes textarea::placeholder{color:rgba(241,235,220,0.42);}
+  .note-status{
+    min-height:18px;
+    margin-top:5px;
+    font-family:var(--mono);
+    font-size:10.5px;
+    color:rgba(241,235,220,0.48);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+  }
+  .practice-link{
+    display:inline-flex;
+    align-items:center;
+    min-height:32px;
+    color:var(--brass);
+    font-size:13px;
+    font-weight:600;
+    text-decoration:none;
+    border-bottom:1px solid rgba(199,160,70,0.42);
+  }
+  .practice-link:hover{color:var(--parchment);}
+  .practice-link:focus-visible{
+    outline:2px solid var(--brass);
+    outline-offset:3px;
+  }
+
   /* ---------- SECTION HEADERS ---------- */
   h2.section-h{
     font-family:var(--serif);
@@ -297,23 +495,31 @@
   /* ---------- RESPONSIVE ---------- */
   @media (max-width:760px){
     .legend{grid-template-columns:repeat(2,1fr);}
+    .companion{grid-template-columns:1fr;}
+    .timer-panel{min-height:auto;}
     .micro-split{grid-template-columns:1fr;}
     .week-grid{grid-template-columns:repeat(2,1fr);}
     .day-card{min-height:auto;}
   }
   @media (max-width:460px){
     .legend{grid-template-columns:1fr;}
+    .companion{padding:14px;}
+    .companion-grid{grid-template-columns:1fr;}
+    .elapsed{font-size:42px;}
+    .clock{text-align:left;}
+    .timer-head{flex-direction:column;}
   }
 
   @media (prefers-reduced-motion: no-preference){
-    .hero, .legend, .staff-block, .week-grid, .margin-note{
+    .hero, .legend, .companion, .staff-block, .week-grid, .margin-note{
       animation: fadeUp 0.5s ease both;
     }
     .legend{animation-delay:0.05s;}
-    .staff-block:nth-of-type(1){animation-delay:0.1s;}
-    .staff-block:nth-of-type(2){animation-delay:0.15s;}
-    .week-grid{animation-delay:0.2s;}
-    .margin-note{animation-delay:0.25s;}
+    .companion{animation-delay:0.1s;}
+    .staff-block:nth-of-type(1){animation-delay:0.15s;}
+    .staff-block:nth-of-type(2){animation-delay:0.2s;}
+    .week-grid{animation-delay:0.25s;}
+    .margin-note{animation-delay:0.3s;}
     @keyframes fadeUp{
       from{opacity:0; transform:translateY(6px);}
       to{opacity:1; transform:translateY(0);}
@@ -337,6 +543,66 @@
     <div class="legend-item transfer"><b>Etude + transfer</b>Czerny (LH-voiced) applied into the actual passage</div>
     <div class="legend-item play"><b>Play-through</b>Run the piece — let the work show up musically</div>
   </div>
+
+  <section class="companion" aria-label="Practice companion">
+    <div class="timer-panel">
+      <div>
+        <div class="timer-head">
+          <div>
+            <div class="timer-label">Practice timer</div>
+            <div class="elapsed" id="elapsed">00:00:00</div>
+          </div>
+          <div class="clock">
+            <div id="current-time">--:--</div>
+            <div id="session-date">Today</div>
+          </div>
+        </div>
+      </div>
+      <div class="timer-actions">
+        <button class="control-btn primary" id="start-pause" type="button">Start</button>
+        <button class="control-btn" id="lap-time" type="button">Mark</button>
+        <button class="control-btn" id="reset-time" type="button">Reset</button>
+      </div>
+    </div>
+
+    <div class="companion-grid">
+      <div class="companion-block">
+        <p class="companion-title">Today</p>
+        <div class="focus-card" id="focus-card">
+          <div class="focus-day" id="focus-day">Loading</div>
+          <div class="focus-detail" id="focus-detail">Finding today's rotation.</div>
+        </div>
+      </div>
+      <div class="companion-block">
+        <p class="companion-title">Compact checklist</p>
+        <div class="practice-checks" id="practice-checks">
+          <label class="practice-check"><input type="checkbox" data-check="opener"><span>5 min technical opener</span></label>
+          <label class="practice-check"><input type="checkbox" data-check="flaw"><span>8 min flaw isolation</span></label>
+          <label class="practice-check"><input type="checkbox" data-check="transfer"><span>7 min transfer</span></label>
+          <label class="practice-check"><input type="checkbox" data-check="play"><span>5 min play-through</span></label>
+        </div>
+      </div>
+      <div class="companion-block">
+        <p class="companion-title">Marks</p>
+        <ol class="lap-list" id="lap-list">
+          <li class="empty-state">Mark each section change.</li>
+        </ol>
+      </div>
+      <div class="companion-block">
+        <p class="companion-title">Next rep cue</p>
+        <div class="empty-state" id="cue-text">Start with one slow pass and listen for the flaw before increasing tempo.</div>
+      </div>
+      <div class="companion-block">
+        <p class="companion-title">External tool</p>
+        <a class="practice-link" href="https://practice-pair.vercel.app/" target="_blank" rel="noopener">Czerny recommender</a>
+      </div>
+      <div class="companion-block notes">
+        <p class="companion-title">Practice notes</p>
+        <textarea id="practice-notes" placeholder="What improved? What still feels tense?"></textarea>
+        <div class="note-status" id="note-status"></div>
+      </div>
+    </div>
+  </section>
 
   <section>
     <h2 class="section-h">The daily session</h2>
@@ -490,5 +756,199 @@
   </div>
 
 </div>
+<script>
+(() => {
+  const elapsedEl = document.getElementById("elapsed");
+  const startPauseBtn = document.getElementById("start-pause");
+  const lapBtn = document.getElementById("lap-time");
+  const resetBtn = document.getElementById("reset-time");
+  const lapList = document.getElementById("lap-list");
+  const currentTimeEl = document.getElementById("current-time");
+  const sessionDateEl = document.getElementById("session-date");
+  const focusCard = document.getElementById("focus-card");
+  const focusDayEl = document.getElementById("focus-day");
+  const focusDetailEl = document.getElementById("focus-detail");
+  const cueTextEl = document.getElementById("cue-text");
+  const notesEl = document.getElementById("practice-notes");
+  const noteStatusEl = document.getElementById("note-status");
+  const checkboxes = [...document.querySelectorAll("[data-check]")];
+
+  const storagePrefix = "practice-blueprint";
+  function localDateKey(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  }
+
+  const todayKey = localDateKey(new Date());
+  const stateKey = `${storagePrefix}:${todayKey}`;
+  const notesKey = `${stateKey}:notes`;
+  const checksKey = `${stateKey}:checks`;
+
+  const rotation = [
+    { day: "Sunday", flaw: "Play-through day", piece: "Full pieces, recital pace", color: "var(--parchment-dim)", cue: "Run music without stopping. Circle issues only after the take." },
+    { day: "Monday", flaw: "Baroque evenness - dotted rhythm", piece: "Bach BWV 926", color: "var(--sage)", cue: "Use dotted and reverse-dotted rhythms before returning to plain even notes." },
+    { day: "Tuesday", flaw: "LH pinky - shoulder release", piece: "Granados, Playera", color: "var(--wine)", cue: "Check the shoulder before each rep. If the pinky gets heavy, reset the arm." },
+    { day: "Wednesday", flaw: "RH 4th finger - rotation, minimum lift", piece: "River Flows in You", color: "var(--brass)", cue: "Rotate through the fourth finger instead of lifting it higher." },
+    { day: "Thursday", flaw: "Baroque evenness - dotted rhythm", piece: "Scarlatti K322", color: "var(--sage)", cue: "Record one slow pass and listen for uneven pairs before speeding up." },
+    { day: "Friday", flaw: "LH pinky - shoulder release", piece: "Bartok Sz42", color: "var(--wine)", cue: "Keep the left hand voiced without adding shoulder weight." },
+    { day: "Saturday", flaw: "Long session - stuck passage + shoulder phone check", piece: "35-40 min, single block", color: "var(--brass)", cue: "Film the passage once, then pick the smallest motion that looks tense." }
+  ];
+
+  let startAt = 0;
+  let elapsedBeforeStart = 0;
+  let timerId = 0;
+  let laps = [];
+  let saveTimer = 0;
+
+  function formatDuration(milliseconds) {
+    const totalSeconds = Math.floor(milliseconds / 1000);
+    const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, "0");
+    const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, "0");
+    const seconds = String(totalSeconds % 60).padStart(2, "0");
+    return `${hours}:${minutes}:${seconds}`;
+  }
+
+  function getElapsed() {
+    return startAt ? elapsedBeforeStart + Date.now() - startAt : elapsedBeforeStart;
+  }
+
+  function renderElapsed() {
+    elapsedEl.textContent = formatDuration(getElapsed());
+  }
+
+  function saveState() {
+    localStorage.setItem(stateKey, JSON.stringify({
+      elapsed: getElapsed(),
+      laps
+    }));
+  }
+
+  function renderLaps() {
+    lapList.innerHTML = "";
+    if (!laps.length) {
+      const item = document.createElement("li");
+      item.className = "empty-state";
+      item.textContent = "Mark each section change.";
+      lapList.append(item);
+      return;
+    }
+
+    laps.slice().reverse().forEach((lap, index) => {
+      const item = document.createElement("li");
+      const label = document.createElement("span");
+      const time = document.createElement("span");
+      label.textContent = `Mark ${laps.length - index}`;
+      time.textContent = formatDuration(lap);
+      item.append(label, time);
+      lapList.append(item);
+    });
+  }
+
+  function updateClock() {
+    const now = new Date();
+    currentTimeEl.textContent = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+    sessionDateEl.textContent = now.toLocaleDateString([], { weekday: "long", month: "short", day: "numeric" });
+  }
+
+  function startTimer() {
+    startAt = Date.now();
+    startPauseBtn.textContent = "Pause";
+    timerId = window.setInterval(() => {
+      renderElapsed();
+      saveState();
+    }, 1000);
+  }
+
+  function pauseTimer() {
+    elapsedBeforeStart = getElapsed();
+    startAt = 0;
+    startPauseBtn.textContent = "Start";
+    window.clearInterval(timerId);
+    saveState();
+    renderElapsed();
+  }
+
+  function loadState() {
+    try {
+      const stored = JSON.parse(localStorage.getItem(stateKey) || "{}");
+      elapsedBeforeStart = Number(stored.elapsed) || 0;
+      laps = Array.isArray(stored.laps) ? stored.laps.filter(Number.isFinite) : [];
+    } catch {
+      elapsedBeforeStart = 0;
+      laps = [];
+    }
+
+    notesEl.value = localStorage.getItem(notesKey) || "";
+    let storedChecks = {};
+    try {
+      storedChecks = JSON.parse(localStorage.getItem(checksKey) || "{}");
+    } catch {
+      storedChecks = {};
+    }
+    checkboxes.forEach((box) => {
+      box.checked = Boolean(storedChecks[box.dataset.check]);
+    });
+  }
+
+  function setFocus() {
+    const focus = rotation[new Date().getDay()];
+    focusCard.style.borderLeftColor = focus.color;
+    focusDayEl.textContent = focus.day;
+    focusDetailEl.textContent = `${focus.flaw} | ${focus.piece}`;
+    cueTextEl.textContent = focus.cue;
+  }
+
+  startPauseBtn.addEventListener("click", () => {
+    if (startAt) {
+      pauseTimer();
+    } else {
+      startTimer();
+    }
+  });
+
+  lapBtn.addEventListener("click", () => {
+    laps.push(getElapsed());
+    renderLaps();
+    saveState();
+  });
+
+  resetBtn.addEventListener("click", () => {
+    window.clearInterval(timerId);
+    startAt = 0;
+    elapsedBeforeStart = 0;
+    laps = [];
+    startPauseBtn.textContent = "Start";
+    localStorage.removeItem(stateKey);
+    renderElapsed();
+    renderLaps();
+  });
+
+  checkboxes.forEach((box) => {
+    box.addEventListener("change", () => {
+      const checked = Object.fromEntries(checkboxes.map((item) => [item.dataset.check, item.checked]));
+      localStorage.setItem(checksKey, JSON.stringify(checked));
+    });
+  });
+
+  notesEl.addEventListener("input", () => {
+    window.clearTimeout(saveTimer);
+    noteStatusEl.textContent = "Saving";
+    saveTimer = window.setTimeout(() => {
+      localStorage.setItem(notesKey, notesEl.value);
+      noteStatusEl.textContent = "Saved";
+    }, 300);
+  });
+
+  loadState();
+  setFocus();
+  updateClock();
+  renderElapsed();
+  renderLaps();
+  window.setInterval(updateClock, 30000);
+  window.addEventListener("beforeunload", saveState);
+})();
+</script>
 </body>
 </html>
