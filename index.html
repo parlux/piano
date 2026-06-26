@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practice Blueprint</title>
+<style>
+  :root{
+    --ink:#1B212C;
+    --ink-2:#222937;
+    --ink-3:#2B3342;
+    --parchment:#ECE3CC;
+    --parchment-dim:#D9CFAF;
+    --brass:#C7A046;
+    --brass-dim:#8E7234;
+    --wine:#9B4750;
+    --wine-dim:#6E343B;
+    --sage:#7C9A78;
+    --sage-dim:#566F53;
+    --ivory:#F1EBDC;
+    --ivory-dim:#B6AF9C;
+    --ink-text:#262017;
+    --serif: "Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+    --sans: "Avenir Next","Segoe UI","Helvetica Neue",Arial,sans-serif;
+    --mono: "JetBrains Mono","SF Mono",Consolas,"Liberation Mono",monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--ink);color:var(--ivory);font-family:var(--sans);}
+  body{
+    background:
+      radial-gradient(circle at 12% 8%, rgba(199,160,70,0.07), transparent 40%),
+      radial-gradient(circle at 88% 92%, rgba(124,154,120,0.06), transparent 40%),
+      var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+  .page{max-width:980px;margin:0 auto;padding:clamp(24px,5vw,64px) clamp(18px,4vw,40px) 60px;}
+
+  /* ---------- HERO ---------- */
+  .hero{padding-bottom:28px;border-bottom:1px solid rgba(241,235,220,0.12);margin-bottom:36px;}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.18em;
+    color:var(--brass);
+    text-transform:uppercase;
+    margin:0 0 14px;
+  }
+  .hero h1{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(30px,5.4vw,46px);
+    line-height:1.1;
+    margin:0 0 16px;
+    color:var(--ivory);
+    letter-spacing:-0.01em;
+  }
+  .hero p.thesis{
+    font-size:15px;
+    line-height:1.65;
+    color:var(--ivory-dim);
+    max-width:620px;
+    margin:0;
+  }
+
+  /* ---------- LEGEND ---------- */
+  .legend-title{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.14em;
+    color:var(--ivory-dim);
+    text-transform:uppercase;
+    margin:0 0 14px;
+  }
+  .legend{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    margin-bottom:48px;
+  }
+  .legend-item{
+    background:var(--ink-2);
+    border:1px solid rgba(241,235,220,0.08);
+    border-radius:3px;
+    padding:12px 12px 12px 14px;
+    border-left:3px solid var(--swatch);
+    font-size:12.5px;
+    line-height:1.45;
+    color:var(--ivory-dim);
+  }
+  .legend-item b{display:block;color:var(--ivory);font-weight:600;font-size:13px;margin-bottom:2px;}
+  .legend-item.opener{--swatch:var(--brass);}
+  .legend-item.flaw{--swatch:var(--wine);}
+  .legend-item.transfer{--swatch:var(--sage);}
+  .legend-item.play{--swatch:var(--parchment-dim);}
+
+  /* ---------- SECTION HEADERS ---------- */
+  h2.section-h{
+    font-family:var(--serif);
+    font-size:clamp(22px,3.4vw,28px);
+    font-weight:500;
+    color:var(--ivory);
+    margin:0 0 6px;
+  }
+  p.section-sub{
+    font-size:13.5px;
+    color:var(--ivory-dim);
+    margin:0 0 26px;
+    max-width:560px;
+    line-height:1.6;
+  }
+
+  /* ---------- DAILY: MEASURE BAR ---------- */
+  .staff-block{margin-bottom:34px;}
+  .staff-label{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    margin-bottom:10px;
+    flex-wrap:wrap;
+    gap:6px;
+  }
+  .staff-label .name{
+    font-family:var(--serif);
+    font-size:17px;
+    color:var(--ivory);
+  }
+  .staff-label .time{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--brass);
+    letter-spacing:0.04em;
+  }
+  .measures{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    border-top:1px solid rgba(241,235,220,0.15);
+    padding-top:2px;
+  }
+  .measure{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:9px 0;
+    border-bottom:1px dashed rgba(241,235,220,0.1);
+    position:relative;
+  }
+  .measure::before{
+    content:"";
+    width:4px;
+    align-self:stretch;
+    border-radius:2px;
+    background:var(--m);
+    flex-shrink:0;
+  }
+  .measure .mtime{
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:var(--ivory-dim);
+    width:54px;
+    flex-shrink:0;
+  }
+  .measure .mlabel{
+    font-size:13.5px;
+    color:var(--ivory);
+    line-height:1.4;
+  }
+  .measure .mlabel span{color:var(--ivory-dim); font-size:12.5px;}
+  .measure.opener{--m:var(--brass);}
+  .measure.flaw{--m:var(--wine);}
+  .measure.transfer{--m:var(--sage);}
+  .measure.play{--m:var(--parchment-dim);}
+
+  .micro-split{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin-top:4px;
+  }
+  .micro{
+    background:var(--ink-2);
+    border:1px solid rgba(241,235,220,0.08);
+    border-radius:4px;
+    padding:14px;
+  }
+  .micro .micro-h{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--brass);
+    margin-bottom:10px;
+  }
+
+  /* ---------- WEEKLY GRID ---------- */
+  .week-grid{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:8px;
+    margin-bottom:14px;
+  }
+  .day-card{
+    background:var(--ink-2);
+    border:1px solid rgba(241,235,220,0.09);
+    border-radius:4px;
+    padding:12px 10px;
+    min-height:148px;
+    display:flex;
+    flex-direction:column;
+  }
+  .day-card .dname{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.08em;
+    color:var(--ivory-dim);
+    margin-bottom:8px;
+  }
+  .day-card .dflaw{
+    font-size:12.5px;
+    font-weight:600;
+    line-height:1.35;
+    margin-bottom:6px;
+    padding-left:8px;
+    border-left:3px solid var(--m);
+  }
+  .day-card .dpiece{
+    font-size:12px;
+    color:var(--ivory-dim);
+    font-style:italic;
+    margin-top:auto;
+    padding-top:8px;
+  }
+  .day-card.long{background:linear-gradient(160deg, var(--ink-3), var(--ink-2));border-color:rgba(199,160,70,0.35);}
+  .day-card.long .dflaw{border-left-color:var(--brass);}
+  .day-card.rest .dflaw{border-left-color:var(--parchment-dim);}
+
+  /* ---------- VARIATIONS LIST ---------- */
+  .variation-list{
+    border-top:1px solid rgba(241,235,220,0.15);
+  }
+  .variation{
+    display:flex;
+    gap:16px;
+    padding:14px 0;
+    border-bottom:1px dashed rgba(241,235,220,0.1);
+  }
+  .v-num{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--brass-dim);
+    width:24px;
+    flex-shrink:0;
+    padding-top:1px;
+  }
+  .v-name{
+    font-family:var(--serif);
+    font-size:15.5px;
+    color:var(--ivory);
+    margin-bottom:4px;
+  }
+  .v-name span{
+    font-family:var(--sans);
+    font-size:12.5px;
+    color:var(--ivory-dim);
+    font-style:normal;
+  }
+  .v-desc{
+    font-size:13px;
+    line-height:1.55;
+    color:var(--ivory-dim);
+  }
+
+  /* ---------- FOOTER ---------- */
+  .margin-note{
+    margin-top:40px;
+    padding:18px 20px;
+    background:var(--ink-2);
+    border:1px solid rgba(199,160,70,0.25);
+    border-radius:4px;
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:14.5px;
+    color:var(--parchment);
+    line-height:1.6;
+  }
+  .margin-note .mn-label{
+    display:block;
+    font-family:var(--mono);
+    font-style:normal;
+    font-size:10.5px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--brass);
+    margin-bottom:8px;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:760px){
+    .legend{grid-template-columns:repeat(2,1fr);}
+    .micro-split{grid-template-columns:1fr;}
+    .week-grid{grid-template-columns:repeat(2,1fr);}
+    .day-card{min-height:auto;}
+  }
+  @media (max-width:460px){
+    .legend{grid-template-columns:1fr;}
+  }
+
+  @media (prefers-reduced-motion: no-preference){
+    .hero, .legend, .staff-block, .week-grid, .margin-note{
+      animation: fadeUp 0.5s ease both;
+    }
+    .legend{animation-delay:0.05s;}
+    .staff-block:nth-of-type(1){animation-delay:0.1s;}
+    .staff-block:nth-of-type(2){animation-delay:0.15s;}
+    .week-grid{animation-delay:0.2s;}
+    .margin-note{animation-delay:0.25s;}
+    @keyframes fadeUp{
+      from{opacity:0; transform:translateY(6px);}
+      to{opacity:1; transform:translateY(0);}
+    }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="hero">
+    <p class="eyebrow">Practice Blueprint</p>
+    <h1>Three flaws, one staff.</h1>
+    <p class="thesis">Baroque evenness corrects itself by ear with dotted rhythm. The 4th finger needs rotation, not more lift. The pinky's heaviness has a name now — shoulder tension. Build the week so each gets dedicated time without crowding out the rest.</p>
+  </header>
+
+  <p class="legend-title">How to read this</p>
+  <div class="legend">
+    <div class="legend-item opener"><b>Technical opener</b>Hanon variations — dotted, reverse-dotted, voiced L/R, staccato</div>
+    <div class="legend-item flaw"><b>Flaw isolation</b>Today's targeted drill — rotates across the week</div>
+    <div class="legend-item transfer"><b>Etude + transfer</b>Czerny (LH-voiced) applied into the actual passage</div>
+    <div class="legend-item play"><b>Play-through</b>Run the piece — let the work show up musically</div>
+  </div>
+
+  <section>
+    <h2 class="section-h">The daily session</h2>
+    <p class="section-sub">Same four measures either way — only the time signature changes.</p>
+
+    <div class="staff-block">
+      <div class="staff-label">
+        <span class="name">Compact — one sitting</span>
+        <span class="time">20–25 MIN</span>
+      </div>
+      <div class="measures">
+        <div class="measure opener"><span class="mtime">5 min</span><span class="mlabel">Technical opener <span>— two Hanon variations, slow</span></span></div>
+        <div class="measure flaw"><span class="mtime">8 min</span><span class="mlabel">Flaw isolation <span>— today's drill, full attention while fresh</span></span></div>
+        <div class="measure transfer"><span class="mtime">7 min</span><span class="mlabel">Transfer <span>— same motion, dropped straight into the passage</span></span></div>
+        <div class="measure play"><span class="mtime">5 min</span><span class="mlabel">Play-through <span>— today's piece, no stopping to fix</span></span></div>
+      </div>
+    </div>
+
+    <div class="staff-block">
+      <div class="staff-label">
+        <span class="name">Extended — split across the day</span>
+        <span class="time">40–60 MIN</span>
+      </div>
+      <div class="micro-split">
+        <div class="micro">
+          <div class="micro-h">Morning · ~15 min</div>
+          <div class="measures">
+            <div class="measure opener"><span class="mtime">8 min</span><span class="mlabel">Technical opener — full Hanon rotation</span></div>
+            <div class="measure flaw"><span class="mtime">7 min</span><span class="mlabel">Flaw isolation — today's drill</span></div>
+          </div>
+        </div>
+        <div class="micro">
+          <div class="micro-h">Midday · ~15–20 min</div>
+          <div class="measures">
+            <div class="measure transfer"><span class="mtime">10 min</span><span class="mlabel">Czerny — LH-voiced etude</span></div>
+            <div class="measure transfer"><span class="mtime">8 min</span><span class="mlabel">Transfer into today's passage</span></div>
+          </div>
+        </div>
+        <div class="micro">
+          <div class="micro-h">Evening · ~10–15 min</div>
+          <div class="measures">
+            <div class="measure transfer"><span class="mtime">5 min</span><span class="mlabel">Second piece — quick transfer</span></div>
+            <div class="measure play"><span class="mtime">8 min</span><span class="mlabel">Play-throughs</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-h">The weekly rotation</h2>
+    <p class="section-sub">Each flaw gets repeat exposure without every day being identical. Saturday goes long; Sunday goes light.</p>
+    <div class="week-grid">
+      <div class="day-card">
+        <div class="dname">MON</div>
+        <div class="dflaw" style="--m:var(--sage)">Baroque evenness<br>dotted rhythm</div>
+        <div class="dpiece">Bach BWV 926</div>
+      </div>
+      <div class="day-card">
+        <div class="dname">TUE</div>
+        <div class="dflaw" style="--m:var(--wine)">LH pinky<br>shoulder release</div>
+        <div class="dpiece">Granados, Playera</div>
+      </div>
+      <div class="day-card">
+        <div class="dname">WED</div>
+        <div class="dflaw" style="--m:var(--brass)">RH 4th finger<br>rotation, min. lift</div>
+        <div class="dpiece">River Flows in You</div>
+      </div>
+      <div class="day-card">
+        <div class="dname">THU</div>
+        <div class="dflaw" style="--m:var(--sage)">Baroque evenness<br>dotted rhythm</div>
+        <div class="dpiece">Scarlatti K322</div>
+      </div>
+      <div class="day-card">
+        <div class="dname">FRI</div>
+        <div class="dflaw" style="--m:var(--wine)">LH pinky<br>shoulder release</div>
+        <div class="dpiece">Bartók Sz42</div>
+      </div>
+      <div class="day-card long">
+        <div class="dname">SAT</div>
+        <div class="dflaw">Long session<br>35–40 min, single block</div>
+        <div class="dpiece">Stuck passage + phone check on the shoulder</div>
+      </div>
+      <div class="day-card rest">
+        <div class="dname">SUN</div>
+        <div class="dflaw">Play-through day<br>no new drilling</div>
+        <div class="dpiece">Full pieces, recital pace</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-h">Hanon variations, for reference</h2>
+    <p class="section-sub">Pick two per session, not all seven. Pair them to the day's flaw focus.</p>
+    <div class="variation-list">
+      <div class="variation">
+        <div class="v-num">01</div>
+        <div class="v-body">
+          <div class="v-name">Plain, slow, full weight</div>
+          <div class="v-desc">Baseline control — deep key contact, even tone bed-to-bed.</div>
+        </div>
+      </div>
+      <div class="variation">
+        <div class="v-num">02</div>
+        <div class="v-body">
+          <div class="v-name">Dotted rhythm <span>(long–short)</span></div>
+          <div class="v-desc">Exposes and corrects unevenness. Core tool for Baroque-evenness days.</div>
+        </div>
+      </div>
+      <div class="variation">
+        <div class="v-num">03</div>
+        <div class="v-body">
+          <div class="v-name">Reverse dotted <span>(short–long)</span></div>
+          <div class="v-desc">Flips which note carries the weight — catches unevenness the first version hides.</div>
+        </div>
+      </div>
+      <div class="variation">
+        <div class="v-num">04</div>
+        <div class="v-body">
+          <div class="v-name">Voiced RH <span>(right loud, left quiet)</span></div>
+          <div class="v-desc">Isolates RH control without LH masking it.</div>
+        </div>
+      </div>
+      <div class="variation">
+        <div class="v-num">05</div>
+        <div class="v-body">
+          <div class="v-name">Voiced LH <span>(left loud, right quiet)</span></div>
+          <div class="v-desc">Main pinky-control tool. Watch the shoulder while doing this one.</div>
+        </div>
+      </div>
+      <div class="variation">
+        <div class="v-num">06</div>
+        <div class="v-body">
+          <div class="v-name">Left hand only</div>
+          <div class="v-desc">Removes RH entirely — easier to feel, and to film, LH weight distribution and shoulder tension.</div>
+        </div>
+      </div>
+      <div class="variation">
+        <div class="v-num">07</div>
+        <div class="v-body">
+          <div class="v-name">Light staccato</div>
+          <div class="v-desc">Quick, minimal-weight release. Cross-check against the shoulder drill — controlled here but heavy in legato points to a release/drop issue rather than pure tension.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="margin-note">
+    <span class="mn-label">Before any exercise</span>
+    Which flaw does this train? If the answer doesn't come in one breath, that time is better spent inside the piece.
+  </div>
+
+</div>
+</body>
+</html>
